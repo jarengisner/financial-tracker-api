@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TrackerController {
     @Autowired
@@ -24,4 +26,17 @@ public class TrackerController {
             return ResponseEntity.ok(currentQueryTracker);
         }
     }
+
+    @GetMapping("/trackers/{userid}/all")
+    public ResponseEntity<List<Tracker>> getAllUserTrackers(@PathVariable Long userid){
+        List<Tracker> userTrackers = trackerService.getAllUsersTrackers(userid);
+
+        if(userTrackers.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(userTrackers);
+        }
+    };
+
+
 }
