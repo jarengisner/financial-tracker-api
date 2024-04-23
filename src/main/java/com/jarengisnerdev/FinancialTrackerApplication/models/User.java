@@ -17,6 +17,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    public User(){}
+
 
     public User(String username, String password){
         this.username = username;

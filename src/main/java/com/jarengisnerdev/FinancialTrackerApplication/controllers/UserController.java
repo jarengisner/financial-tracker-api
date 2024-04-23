@@ -28,6 +28,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users/name/{username}")
+    public ResponseEntity<User> getUserByName(@PathVariable String username){
+        User currentUser = userService.getUserByUsername(username);
+
+        if(currentUser == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            return ResponseEntity.ok(currentUser);
+        }
+    }
+
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user){
         User newlyCreatedUser = userService.createUser(user);
