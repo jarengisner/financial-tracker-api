@@ -12,5 +12,7 @@ public interface TrackerService {
     * will give us access to essentially the rest of the application, post log in*/
     public List<Tracker> getAllUsersTrackers(Long userID);
 
+    public Tracker createNewTracker(Tracker tracker);
+
 
 }
