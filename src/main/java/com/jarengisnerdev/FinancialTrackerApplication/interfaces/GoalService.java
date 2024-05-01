@@ -14,4 +14,6 @@ public interface GoalService {
     public List<Goal> getAllGoalsByTrackerId(Long trackerId);
 
     public Goal createNewGoal(Goal goal);
+
+    public Goal updateGoal(Goal goal);
 }

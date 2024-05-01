@@ -49,4 +49,26 @@ public class TrackerController {
         }
 
     }
+
+    @PutMapping("/trackers/edit/{id}")
+    public ResponseEntity<?> updateTracker(@RequestBody Tracker tracker, @PathVariable Long id){
+        Tracker currentEditingTracker = trackerService.getTrackerById(id);
+
+        if(currentEditingTracker == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            currentEditingTracker.setTrackerName(tracker.getTrackerName());
+            currentEditingTracker.setSavingsGoal(tracker.getSavingsGoal());
+            currentEditingTracker.setMonth(tracker.isMonth());
+            currentEditingTracker.setYear(tracker.isYear());
+
+            try{
+                Tracker postEditingTracker = trackerService.updateTracker(currentEditingTracker);
+
+                return new ResponseEntity<>(postEditingTracker, HttpStatus.CREATED);
+            }catch(Exception e){
+                return new ResponseEntity<>("Failed to update tracker " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
 }

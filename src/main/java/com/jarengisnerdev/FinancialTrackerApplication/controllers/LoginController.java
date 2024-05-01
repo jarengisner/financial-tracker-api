@@ -3,6 +3,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.controllers;
 import com.jarengisnerdev.FinancialTrackerApplication.interfaces.UserService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.LoginRequest;
 import com.jarengisnerdev.FinancialTrackerApplication.models.User;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log
 @RestController
 public class LoginController {
 
@@ -20,6 +22,9 @@ public class LoginController {
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest){
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
+
+        log.info(username);
+        log.info(password);
 
         User user = userService.getUserByUsername(username);
 

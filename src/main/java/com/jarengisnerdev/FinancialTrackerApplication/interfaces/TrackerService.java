@@ -14,5 +14,6 @@ public interface TrackerService {
 
     public Tracker createNewTracker(Tracker tracker);
 
+    public Tracker updateTracker(Tracker tracker);
 
 }

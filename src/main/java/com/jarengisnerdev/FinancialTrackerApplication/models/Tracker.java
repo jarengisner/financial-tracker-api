@@ -91,7 +91,7 @@ public class Tracker {
     public void setYear(boolean year){
         this.year = year;
     }
-    public boolean getMonth(){
+    public boolean isMonth(){
         return this.month;
     }
 

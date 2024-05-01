@@ -47,4 +47,27 @@ public class GoalController {
             return new ResponseEntity<>("Failed to create a new goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    /*
+    Goal needs to be sent in the form of a complete goal, even though we will only pull the new message,
+    just so that a new Goal object can be built out of the sent json
+     */
+    @PutMapping("/goal/edit/{id}")
+    public ResponseEntity<?> updateGoal(@RequestBody Goal goal, @PathVariable Long id){
+      Goal currentlyEditingGoal = goalService.getGoalByGoalId(id);
+
+      if(currentlyEditingGoal == null){
+          return ResponseEntity.notFound().build();
+      }else{
+          currentlyEditingGoal.setMessage(goal.getMessage());
+
+          try{
+              Goal postEditingGoal = goalService.updateGoal(currentlyEditingGoal);
+              return new ResponseEntity<>(postEditingGoal, HttpStatus.CREATED);
+          }catch(Exception e){
+              return new ResponseEntity<>("Failed to update goal" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+          }
+      }
+    };
 }

@@ -34,4 +34,7 @@ public class GoalServiceImpl implements GoalService {
     public Goal createNewGoal(Goal goal){
         return goalRepository.save(goal);
     }
+
+    @Override
+    public Goal updateGoal(Goal goal){return goalRepository.save(goal);}
 }

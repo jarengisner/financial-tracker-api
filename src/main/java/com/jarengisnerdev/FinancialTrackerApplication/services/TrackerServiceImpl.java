@@ -33,4 +33,7 @@ public class TrackerServiceImpl implements TrackerService {
     public Tracker createNewTracker(Tracker tracker){
         return trackerRepository.save(tracker);
     }
+
+    @Override
+    public Tracker updateTracker(Tracker tracker){return trackerRepository.save(tracker);}
 }
