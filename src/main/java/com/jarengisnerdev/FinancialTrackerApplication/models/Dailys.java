@@ -9,7 +9,7 @@ import java.sql.Date;
 
 @Entity
 @NoArgsConstructor
-public class Daily {
+public class Dailys {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class Daily {
     @Column(nullable = false)
     private Long tracker_id;
 
-    public Daily(BigDecimal saved, String saved_note, BigDecimal needs, String needs_note, BigDecimal wants, String wants_note, Date entry_date, Long tracker_id){
+    public Dailys(BigDecimal saved, String saved_note, BigDecimal needs, String needs_note, BigDecimal wants, String wants_note, Date entry_date, Long tracker_id){
         this.saved = saved;
         this.saved_note = saved_note;
         this.needs = needs;

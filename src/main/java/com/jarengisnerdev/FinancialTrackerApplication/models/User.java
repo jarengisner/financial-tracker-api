@@ -2,6 +2,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.models;
 
 import jakarta.persistence.*;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +23,7 @@ public class User {
 
     public User(String username, String password){
         this.username = username;
-        this.password = password;
+        setPassword(password);
     }
 
     public void setUsername(String username){
@@ -34,10 +35,16 @@ public class User {
     };
 
     public void setPassword(String password){
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
     };
 
     public Long getID(){
         return this.user_id;
+    };
+
+    public boolean verifyPassword(String rawPassword){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.matches(rawPassword, this.password);
     };
 }

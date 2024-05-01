@@ -1,16 +1,16 @@
 package com.jarengisnerdev.FinancialTrackerApplication.interfaces;
 
-import com.jarengisnerdev.FinancialTrackerApplication.models.Daily;
+import com.jarengisnerdev.FinancialTrackerApplication.models.Dailys;
 
 import java.util.List;
 
 public interface DailyService {
 
-    public Daily getDailyById(Long dailyId);
+    public Dailys getDailyById(Long dailyId);
 
-    public List<Daily> getAllDailyByTrackerId(Long trackerId);
+    public List<Dailys> getAllDailyByTrackerId(Long trackerId);
 
-    public Daily createNewDaily(Daily daily);
+    public Dailys createNewDaily(Dailys daily);
 
-    public Daily updateDaily(Daily daily);
+    public Dailys updateDaily(Dailys daily);
 }
