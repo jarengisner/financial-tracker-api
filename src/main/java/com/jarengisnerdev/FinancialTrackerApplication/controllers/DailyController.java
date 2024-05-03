@@ -124,10 +124,6 @@ public class DailyController {
         }catch(Exception e){
             return new ResponseEntity<>("Failed to update daily record: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
-
-
     };
 
 
