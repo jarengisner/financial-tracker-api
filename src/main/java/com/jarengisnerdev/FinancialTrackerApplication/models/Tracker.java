@@ -41,9 +41,17 @@ public class Tracker {
     @Column()
     private BigDecimal savings_goal;
 
+    @JsonProperty("wants_goal")
+    @Column()
+    private BigDecimal wants_goal;
+
+    @JsonProperty("needs_goal")
+    @Column
+    private BigDecimal needs_goal;
 
 
-    public Tracker(String tracker_name, int user_id, boolean year, boolean month, BigDecimal savings_goal){
+
+    public Tracker(String tracker_name, int user_id, boolean year, boolean month, BigDecimal savings_goal, BigDecimal wants_goal, BigDecimal needs_goal){
         this.tracker_name = tracker_name;
 
         //userId is assigned on creation, linking the tables, there will be no way to change this
@@ -54,6 +62,10 @@ public class Tracker {
         this.month = month;
 
         this.savings_goal = savings_goal;
+
+        this.wants_goal = wants_goal;
+
+        this.needs_goal = needs_goal;
     }
 
 
@@ -107,6 +119,16 @@ public class Tracker {
     public void setSavingsGoal(BigDecimal savings_goal) {
         this.savings_goal = savings_goal;
     };
+
+    public BigDecimal getWantsGoal(){
+        return this.wants_goal;
+    };
+
+    public void setWantsGoal(BigDecimal wants_goal){this.wants_goal = wants_goal;}
+
+
+    public BigDecimal getNeedsGoal(){return this.needs_goal;}
+    public void setNeedsGoal(BigDecimal needs_goal){this.needs_goal = needs_goal;}
 
 
 }

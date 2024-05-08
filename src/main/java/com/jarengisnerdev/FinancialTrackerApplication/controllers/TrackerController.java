@@ -124,6 +124,8 @@ public class TrackerController {
                }else{
                    currentEditingTracker.setTrackerName(tracker.getTrackerName());
                    currentEditingTracker.setSavingsGoal(tracker.getSavingsGoal());
+                   currentEditingTracker.setNeedsGoal(tracker.getNeedsGoal());
+                   currentEditingTracker.setWantsGoal(tracker.getWantsGoal());
                    currentEditingTracker.setMonth(tracker.isMonth());
                    currentEditingTracker.setYear(tracker.isYear());
 
