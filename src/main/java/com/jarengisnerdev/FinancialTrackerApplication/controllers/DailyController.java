@@ -108,11 +108,11 @@ public class DailyController {
                     return ResponseEntity.notFound().build();
                 }else {
                     currentDailyToEdit.setSaved(daily.getSaved());
-                    currentDailyToEdit.setSavedNote(daily.getSavedNote());
+                    currentDailyToEdit.setSaved_note(daily.getSaved_note());
                     currentDailyToEdit.setNeeds(daily.getNeeds());
-                    currentDailyToEdit.setNeedsNote(daily.getNeedsNote());
+                    currentDailyToEdit.setNeeds_note(daily.getNeeds_note());
                     currentDailyToEdit.setWants(daily.getWants());
-                    currentDailyToEdit.setWantsNote(daily.getWantsNote());
+                    currentDailyToEdit.setWants_note(daily.getWants_note());
 
                     Dailys dailyAfterEditing = dailyService.updateDaily(currentDailyToEdit);
                     return new ResponseEntity<>(dailyAfterEditing, HttpStatus.CREATED);

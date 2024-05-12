@@ -38,11 +38,11 @@ public class Goal {
         this.message = message;
     };
 
-    public Long getTrackerId() {
+    public Long getTracker_id() {
         return tracker_id;
     };
 
-    public void setTrackerId(Long trackerId){
+    public void setTracker_id(Long trackerId){
         this.tracker_id = trackerId;
     }
 }
