@@ -71,27 +71,28 @@ public class Tracker {
 
 
     //Tracker name setters and getters
-    public void setTrackerName(String tracker_name) {
+    //tracker names were originally plain camelCase
+    public void setTracker_name(String tracker_name) {
         this.tracker_name = tracker_name;
     };
 
-    public String getTrackerName() {
+    public String getTracker_name() {
         return tracker_name;
     }
 
 
     //tracker id is auto completed by the system, we do not need to set
-    public int getTrackerId() {
+    public int getTracker_id() {
         return tracker_id;
     };
 
 
     //UserId setters and getters
-    public int getUserId() {
+    public int getUser_id() {
         return user_id;
     };
 
-    public void setUserId(int user_id){
+    public void setUser_id(int user_id){
         this.user_id = user_id;
     };
 
@@ -112,23 +113,23 @@ public class Tracker {
     };
 
     //savings goal getters and setters
-    public BigDecimal getSavingsGoal(){
+    public BigDecimal getSavings_goal(){
         return this.savings_goal;
     }
 
-    public void setSavingsGoal(BigDecimal savings_goal) {
+    public void setSavings_goal(BigDecimal savings_goal) {
         this.savings_goal = savings_goal;
     };
 
-    public BigDecimal getWantsGoal(){
+    public BigDecimal getWants_goal(){
         return this.wants_goal;
     };
 
-    public void setWantsGoal(BigDecimal wants_goal){this.wants_goal = wants_goal;}
+    public void setWants_goal(BigDecimal wants_goal){this.wants_goal = wants_goal;}
 
 
-    public BigDecimal getNeedsGoal(){return this.needs_goal;}
-    public void setNeedsGoal(BigDecimal needs_goal){this.needs_goal = needs_goal;}
+    public BigDecimal getNeeds_goal(){return this.needs_goal;}
+    public void setNeeds_goal(BigDecimal needs_goal){this.needs_goal = needs_goal;}
 
 
 }

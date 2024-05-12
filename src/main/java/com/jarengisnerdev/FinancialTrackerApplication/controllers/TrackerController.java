@@ -3,6 +3,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.controllers;
 import com.jarengisnerdev.FinancialTrackerApplication.interfaces.TrackerService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.Tracker;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Log
 @RestController
 public class TrackerController {
     @Autowired
@@ -53,6 +55,7 @@ public class TrackerController {
             if(token != null && token.startsWith("Bearer ")){
                 String jwtToken = token.substring(7);
 
+
                 //validation
                 if(!JwtUtil.validateToken(jwtToken)){
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -60,6 +63,8 @@ public class TrackerController {
 
                 //proceed as normal
                 List<Tracker> userTrackers = trackerService.getAllUsersTrackers(userid);
+
+
 
                 if(userTrackers.isEmpty()){
                     return ResponseEntity.noContent().build();
@@ -122,10 +127,10 @@ public class TrackerController {
                if(currentEditingTracker == null){
                    return ResponseEntity.notFound().build();
                }else{
-                   currentEditingTracker.setTrackerName(tracker.getTrackerName());
-                   currentEditingTracker.setSavingsGoal(tracker.getSavingsGoal());
-                   currentEditingTracker.setNeedsGoal(tracker.getNeedsGoal());
-                   currentEditingTracker.setWantsGoal(tracker.getWantsGoal());
+                   currentEditingTracker.setTracker_name(tracker.getTracker_name());
+                   currentEditingTracker.setSavings_goal(tracker.getSavings_goal());
+                   currentEditingTracker.setNeeds_goal(tracker.getNeeds_goal());
+                   currentEditingTracker.setWants_goal(tracker.getWants_goal());
                    currentEditingTracker.setMonth(tracker.isMonth());
                    currentEditingTracker.setYear(tracker.isYear());
 
