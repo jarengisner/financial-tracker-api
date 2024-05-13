@@ -26,7 +26,7 @@ public class Goal {
         this.tracker_id = tracker_id;
     };
 
-    public Long getGoalId() {
+    public Long getGoal_id() {
         return goal_id;
     };
 

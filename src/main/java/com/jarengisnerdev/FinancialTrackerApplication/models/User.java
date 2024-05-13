@@ -1,5 +1,6 @@
 package com.jarengisnerdev.FinancialTrackerApplication.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,9 +13,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
+    @JsonProperty("username")
     @Column(nullable = false, unique = true)
     private String username;
 
+    @JsonProperty("password")
     @Column(nullable = false)
     private String password;
 
