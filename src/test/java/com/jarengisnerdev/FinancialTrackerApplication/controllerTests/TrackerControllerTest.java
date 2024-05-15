@@ -1,6 +1,5 @@
 package com.jarengisnerdev.FinancialTrackerApplication.controllerTests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,9 +19,6 @@ public class TrackerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     private static String username;
     private static String token;

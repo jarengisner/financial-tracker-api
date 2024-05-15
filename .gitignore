@@ -35,3 +35,6 @@ build/
 
 ### Notes ###
 src/main/resources/notes.md
+
+### Login Testing information ###
+src/test/java/com/jarengisnerdev/FinancialTrackerApplication/controllerTests/LoginControllerTest.java
