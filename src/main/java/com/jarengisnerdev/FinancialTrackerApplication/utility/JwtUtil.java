@@ -3,9 +3,11 @@ package com.jarengisnerdev.FinancialTrackerApplication.utility;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.java.Log;
 
 import java.util.Date;
 
+@Log
 public class JwtUtil {
     private static final String SECRET_KEY = System.getenv("JWT_SECRET");
     private static final long EXPIRATION_TIME = 86_400_000;

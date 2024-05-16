@@ -60,6 +60,7 @@ public class LoginController {
         log.info("token recieved correctly");
 
         if(JwtUtil.isTokenExpired(currentToken)){
+            log.info("Token passes expiration check");
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
