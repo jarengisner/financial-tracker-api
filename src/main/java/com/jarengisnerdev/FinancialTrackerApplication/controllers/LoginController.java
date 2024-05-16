@@ -4,6 +4,7 @@ import com.jarengisnerdev.FinancialTrackerApplication.interfaces.UserService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.LoginRequest;
 import com.jarengisnerdev.FinancialTrackerApplication.models.LoginResponse;
 import com.jarengisnerdev.FinancialTrackerApplication.models.User;
+import com.jarengisnerdev.FinancialTrackerApplication.models.ValidationRequest;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,22 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateUsersCurrentToken(@RequestBody ValidationRequest validationRequest){
+        String currentToken = validationRequest.getToken();
+
+        if(currentToken.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        log.info("token recieved correctly");
+
+        if(JwtUtil.isTokenExpired(currentToken)){
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
 }

@@ -61,6 +61,11 @@ public class TrackerController {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
                 }
 
+                if(JwtUtil.isTokenExpired(jwtToken) == false){
+                    log.info("Token was rejected due to expiration date");
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+                }
+
                 //proceed as normal
                 List<Tracker> userTrackers = trackerService.getAllUsersTrackers(userid);
 

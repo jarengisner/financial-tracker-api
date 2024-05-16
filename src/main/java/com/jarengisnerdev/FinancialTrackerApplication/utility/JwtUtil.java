@@ -1,5 +1,6 @@
 package com.jarengisnerdev.FinancialTrackerApplication.utility;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -31,6 +32,26 @@ public class JwtUtil {
         try {
             Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isTokenExpired(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            // Get the token expiration date
+            Date expirationDate = claims.getExpiration();
+            if (expirationDate == null) {
+                return false;
+            }
+
+
+            return !expirationDate.before(new Date());
         } catch (Exception e) {
             return false;
         }
