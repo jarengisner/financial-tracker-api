@@ -36,4 +36,7 @@ public class TrackerServiceImpl implements TrackerService {
 
     @Override
     public Tracker updateTracker(Tracker tracker){return trackerRepository.save(tracker);}
+
+    @Override
+    public void deleteTracker(Long trackerID){ trackerRepository.deleteById(trackerID);}
 }

@@ -3,6 +3,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.controllers;
 import com.jarengisnerdev.FinancialTrackerApplication.interfaces.TrackerService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.Tracker;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
+import com.jarengisnerdev.FinancialTrackerApplication.utility.MessageResponse;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -149,5 +150,35 @@ public class TrackerController {
        }catch(Exception e){
            return new ResponseEntity<>("Failed to update tracker " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
        }
+    }
+
+
+    @DeleteMapping("trackers/delete/{id}")
+    public ResponseEntity<?> deleteTracker(@PathVariable Long id, @RequestHeader("Authorization") String token){
+        try{
+            if(token != null && token.startsWith("Bearer ")){
+                String jwtToken = token.substring(7);
+
+                if(!JwtUtil.validateToken(jwtToken)){
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+                }
+
+                Tracker checkTracker = trackerService.getTrackerById(id);
+
+                if(checkTracker == null){
+                    return ResponseEntity.notFound().build();
+                }else{
+                    MessageResponse message = new MessageResponse("Successfully Deleted");
+
+                    trackerService.deleteTracker(id);
+
+                    return ResponseEntity.ok(message);
+                }
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        }catch(Exception e){
+            return new ResponseEntity<>("Failed to delete tracker " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

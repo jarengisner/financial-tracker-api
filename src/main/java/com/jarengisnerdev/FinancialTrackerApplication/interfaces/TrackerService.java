@@ -1,6 +1,7 @@
 package com.jarengisnerdev.FinancialTrackerApplication.interfaces;
 
 import com.jarengisnerdev.FinancialTrackerApplication.models.Tracker;
+import com.jarengisnerdev.FinancialTrackerApplication.utility.MessageResponse;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface TrackerService {
     public Tracker createNewTracker(Tracker tracker);
 
     public Tracker updateTracker(Tracker tracker);
+
+    public void deleteTracker(Long trackerID);
 
 }
