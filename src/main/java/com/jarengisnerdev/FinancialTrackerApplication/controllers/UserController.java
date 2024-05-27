@@ -3,6 +3,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.controllers;
 import com.jarengisnerdev.FinancialTrackerApplication.interfaces.UserService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.User;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
+import com.jarengisnerdev.FinancialTrackerApplication.utility.MessageResponse;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -84,5 +85,34 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user){
         User newlyCreatedUser = userService.createUser(user);
         return new ResponseEntity<>(newlyCreatedUser, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/users/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id, @RequestHeader("Authentication") String token){
+        try{
+            if(token != null && token.startsWith("Bearer ")){
+                String jwtToken = token.substring(7);
+
+                if(!JwtUtil.validateToken(jwtToken)){
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+                }
+
+                User userToDelete = userService.getUserById(id);
+
+                if(userToDelete == null){
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+                }
+
+                userService.deleteUser(id);
+
+                MessageResponse message = new MessageResponse("User successfully deleted");
+
+                return ResponseEntity.ok(message);
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        }catch(Exception e){
+            return new ResponseEntity<>("Failed to delete user account " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
