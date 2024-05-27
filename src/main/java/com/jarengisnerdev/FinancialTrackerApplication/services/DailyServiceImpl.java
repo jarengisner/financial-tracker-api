@@ -39,4 +39,9 @@ public class DailyServiceImpl implements DailyService {
     public Dailys updateDaily(Dailys daily){
         return dailyRepository.save(daily);
     };
+
+    @Override
+    public void deleteDaily(Long dailyId){
+        dailyRepository.deleteById(dailyId);
+    }
 }

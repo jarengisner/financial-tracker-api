@@ -13,4 +13,6 @@ public interface DailyService {
     public Dailys createNewDaily(Dailys daily);
 
     public Dailys updateDaily(Dailys daily);
+
+    public void deleteDaily(Long dailyId);
 }

@@ -37,4 +37,7 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public Goal updateGoal(Goal goal){return goalRepository.save(goal);}
+
+    @Override
+    public void deleteGoal(Long goalId){goalRepository.deleteById(goalId);}
 }

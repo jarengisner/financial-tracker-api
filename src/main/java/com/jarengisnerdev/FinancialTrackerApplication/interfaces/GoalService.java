@@ -16,4 +16,6 @@ public interface GoalService {
     public Goal createNewGoal(Goal goal);
 
     public Goal updateGoal(Goal goal);
+
+    public void deleteGoal(Long goalId);
 }

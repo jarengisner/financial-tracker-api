@@ -3,6 +3,7 @@ package com.jarengisnerdev.FinancialTrackerApplication.controllers;
 import com.jarengisnerdev.FinancialTrackerApplication.interfaces.GoalService;
 import com.jarengisnerdev.FinancialTrackerApplication.models.Goal;
 import com.jarengisnerdev.FinancialTrackerApplication.utility.JwtUtil;
+import com.jarengisnerdev.FinancialTrackerApplication.utility.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -122,4 +123,33 @@ public class GoalController {
             return new ResponseEntity<>("Failed to update goal" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     };
+
+    @DeleteMapping("/goal/delete/{id}")
+    public ResponseEntity<?> deleteGoal(@PathVariable Long id, @RequestHeader("Authorization") String token){
+        try{
+            if(token != null && token.startsWith("Bearer ")){
+                String jwtToken = token.substring(7);
+
+                if(!JwtUtil.validateToken(jwtToken)){
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+                };
+
+                Goal goalToDelete = goalService.getGoalByGoalId(id);
+
+                if(goalToDelete == null){
+                    return ResponseEntity.notFound().build();
+                }else{
+                    goalService.deleteGoal(id);
+
+                    MessageResponse message = new MessageResponse("Goal Successfully Deleted");
+
+                    return ResponseEntity.ok(message);
+                }
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        }catch(Exception e){
+            return new ResponseEntity<>("Failed to delete goal " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
