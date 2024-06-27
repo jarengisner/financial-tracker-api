@@ -37,9 +37,18 @@ public class User {
         return this.username;
     };
 
+    public String getPassword(){
+        return this.password;
+    };
+
     public void setPassword(String password){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.password = passwordEncoder.encode(password);
+    };
+
+    //Made to be able to change password, with hashed pass upon creation of JSON object
+    public void hashedPasswordUpdate(String hashedPassword){
+        this.password = hashedPassword;
     };
 
     public Long getID(){
