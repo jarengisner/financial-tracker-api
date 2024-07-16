@@ -90,7 +90,7 @@ public class UserController {
     }
 
     @PutMapping("/users/update/password/{id}")
-    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable Long id, @RequestHeader("Authentication") String token){
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable Long id, @RequestHeader("Authorization") String token){
         try{
             if(token != null && token.startsWith("Bearer ")){
                 String jwtToken = token.substring(7);
@@ -117,7 +117,7 @@ public class UserController {
     };
 
     @DeleteMapping("/users/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id, @RequestHeader("Authentication") String token){
+    public ResponseEntity<?> deleteUser(@PathVariable Long id, @RequestHeader("Authorization") String token){
         try{
             if(token != null && token.startsWith("Bearer ")){
                 String jwtToken = token.substring(7);
