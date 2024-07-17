@@ -107,7 +107,7 @@ public class UserController {
 
                 userToEdit.hashedPasswordUpdate(user.getPassword());
                 User postEditUser = userService.updateUser(userToEdit);
-                return ResponseEntity.ok("Successfully updated user");
+                return ResponseEntity.ok(postEditUser);
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
